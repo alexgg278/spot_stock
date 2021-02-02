@@ -448,6 +448,9 @@ a {
 .bg-grey{
   background-color: #31302F;
 }
+.bg-white{
+  background-color: #FFFFFF;
+}
 .text-padding{
   padding: 5px;
 }

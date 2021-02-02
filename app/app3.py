@@ -21,11 +21,16 @@ app.layout = html.Div(
                      html.Div(className='three columns div-user-controls',
                               children=[
                                   html.H2('PRECIO DE ACCIÓN'),
-                                  html.P('Escriba el símbolo ticker de la acción que quiere visualizar.'),
+                                  html.P('Escriba y seleccione de la lista el nombre de la compañia cuya acción quiera visualizar.'),
                                   html.Div(
                                       className='div-for-input',
                                       children=[
-                                          dcc.Input(id='symbol', type='text', placeholder='Ticker symbol', value='AMZN', debounce=True)
+                                          dcc.Dropdown(
+                                            options=ticker_list,
+                                            value='AMZN',
+                                            multi=False,
+                                            id='symbol'
+                                          )
                                       ]
                                   )
                               ]),

@@ -9,6 +9,25 @@ import matplotlib.dates as mdates
 import chart_studio.plotly as py
 import plotly.graph_objects as go
 
+import csv
+
+def csv_to_dict(csv_name='tickers1.csv'):
+    '''
+    :param csv_name: name of the csv file to be converted in list
+    :return: list
+    '''
+    with open(csv_name, mode='r') as infile:
+        reader = csv.reader(infile)
+        list_names = [{'label': line[1], 'value': line[0]} for line in reader]
+    with open(csv_name, mode='r') as infile:
+        reader = csv.reader(infile)
+        list_tickers = [{'label': line[0], 'value': line[0]} for line in reader]
+    with open(csv_name, mode='r') as infile:
+        reader = csv.reader(infile)
+        dict_tickers = {line[0]: line[1] for line in reader}
+
+    list_fin = list_names + list_tickers
+    return list_fin, dict_tickers
 
 def get_response(url, function, outputsize, symbol='GOOG', key='Y6GDRF92F1KZUF4O'):
     '''
@@ -72,7 +91,7 @@ def plot_df(df, symbol):
 
 def plot_df_py(df, symbol):
     trace1 = {
-        'line': {'color': 'rgba(31,119,180,1)'},
+        'line': {'color': 'rgba(30, 166, 220, 1)'},
         'mode': 'lines',
         'name': symbol,
         'type': 'scatter',

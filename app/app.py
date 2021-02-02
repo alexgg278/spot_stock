@@ -9,7 +9,5 @@ response = get_response(url, function, outputsize, symbol)
 df_response = get_df(response)
 
 # Plot with matplotlib
-# plot_df(df_response, symbol)
+plot_df(df_response, symbol)
 
-# Plot with plotly
-plot_df_py(df_response, symbol)
