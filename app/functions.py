@@ -166,6 +166,7 @@ def plot_df_py(df, symbol):
     }
 
     fig = go.Figure(data=data, layout=layout)
+    fig.update_layout(height=920)
     return fig
 
 def plot_candlestick(df, symbol):
@@ -226,5 +227,6 @@ def plot_candlestick(df, symbol):
     }
 
     fig = go.Figure(data=data, layout=layout)
+    fig.update_layout(height=920)
     return fig
 
