@@ -23,13 +23,12 @@ app.layout = html.Div(
                                   html.H2('PRECIO DE ACCIÓN'),
                                   html.P('Escriba el símbolo ticker de la acción que quiere visualizar:'),
                                   html.Div(
-                                      dcc.Input(
-                                            id='symbol',
-                                            type='text',
-                                            placeholder='Ticker symbol',
-                                            value='AMZN',
-                                            debounce=True)
-                                       ),
+                                      dcc.Dropdown(
+                                          options=ticker_list,
+                                          value='AMZN',
+                                          multi=False,
+                                          id='symbol'
+                                      )),
                                   html.Br(),
                                   html.Br(),
                                   html.P('Escoge el tipo de gráfico:'),

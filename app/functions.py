@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 
 import csv
 
-def csv_to_dict(csv_name='tickers1.csv'):
+def csv_to_dict(csv_name='tickers.csv'):
     '''
     :param csv_name: name of the csv file to be converted in list
     :return: list
