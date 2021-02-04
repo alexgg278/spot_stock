@@ -6,7 +6,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
-import chart_studio.plotly as py
 import plotly.graph_objects as go
 
 import csv
@@ -60,6 +59,15 @@ def get_df(response):
     df_response = pd.DataFrame(dict_response)
     return df_response
 
+def date_filter_df(df_response, start_date, end_date):
+    '''
+    :param df_response: df to be filtered by date
+    :param start_date: start date to filter from
+    :param end_date: start date to filter to
+    :return: filtered by date df
+    '''
+    df_filtered = df_response[(df_response['Date'] >= start_date) & (df_response['Date'] <= end_date)]
+    return df_filtered
 
 def plot_df(df, symbol):
     '''
@@ -99,17 +107,21 @@ def plot_df_py(df, symbol):
         'y': df['Close'],
         'xaxis': 'x',
         'yaxis': 'y',
-        'fill': 'tozeroy'
+        'fill': 'tozeroy',
+        'fillcolor': 'rgba(30, 166, 220, 0.2)'
     }
     data = [trace1]
 
     layout = {
-        "title": {'text': symbol, 'font': {'color': 'white'}, 'x': 0.5},
-        "template": "plotly_dark",
+        "title": {'text': symbol, 'font': {'color': 'black', 'size': 28}, 'x': 0.5},
+        "template": "seaborn",
         "autosize": True,
         "xaxis": {
             "domain": [0, 1],
             'range': [min(df['Date']), max(df['Date'])],
+            'tickmode': 'auto',
+            'rangeslider_visible': True,
+            'nticks': 20,
             "rangeselector": {"buttons": [
                 {
                     "step": "month",
@@ -142,7 +154,68 @@ def plot_df_py(df, symbol):
         "yaxis": {
             "title": "USD",
             "domain": [0, 1],
+            'tickprefix': '$',
             'range': [min(df['Close']) * 0.95, max(df['Close']) * 1.05]
+        },
+        "margin": {
+            "b": 50,
+            "l": 70,
+            "r": 30,
+            "t": 40
+        }
+    }
+
+    fig = go.Figure(data=data, layout=layout)
+    return fig
+
+def plot_candlestick(df, symbol):
+    trace1 = go.Candlestick(x=df['Date'], open=df['Open'], high=df['High'], low=df['Low'], close=df['Close'])
+
+    data = [trace1]
+
+    layout = {
+        "title": {'text': symbol, 'font': {'color': 'black', 'size': 28}, 'x': 0.5},
+        "template": "seaborn",
+        "autosize": True,
+        "xaxis": {
+            "domain": [0, 1],
+            'range': [min(df['Date']), max(df['Date'])],
+            'tickmode': 'auto',
+            'nticks': 20,
+            "rangeselector": {"buttons": [
+                {
+                    "step": "month",
+                    "count": 3,
+                    "label": "3 mo",
+                    "stepmode": "backward"
+                },
+                {
+                    "step": "month",
+                    "count": 6,
+                    "label": "6 mo",
+                    "stepmode": "backward"
+                },
+                {
+                    "step": "year",
+                    "count": 1,
+                    "label": "1 yr",
+                    "stepmode": "backward"
+                },
+                {
+                    "step": "year",
+                    "count": 1,
+                    "label": "YTD",
+                    "stepmode": "todate"
+                },
+                {"step": "all"}
+            ],
+            }
+        },
+        "yaxis": {
+            "title": "USD",
+            "domain": [0, 1],
+            'tickprefix': '$',
+            'range': [min(df['Low']) * 0.95, max(df['High']) * 1.05]
         },
         "margin": {
             "b": 50,

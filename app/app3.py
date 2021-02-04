@@ -18,10 +18,10 @@ app.layout = html.Div(
     children=[
         html.Div(className='row',
                  children=[
-                     html.Div(className='three columns div-user-controls',
+                     html.Div(className='three columns div-user-controls bg-grey',
                               children=[
                                   html.H2('PRECIO DE ACCIÓN'),
-                                  html.P('Escriba y seleccione de la lista el nombre de la compañia cuya acción quiera visualizar.'),
+                                  html.P('Escriba y seleccione en la lista la compañia cuya acción quiera visualizar.'),
                                   html.Div(
                                       className='div-for-input',
                                       children=[
@@ -34,7 +34,7 @@ app.layout = html.Div(
                                       ]
                                   )
                               ]),
-                     html.Div(className='nine columns div-for-charts bg-grey',
+                     html.Div(className='nine columns div-for-charts bg-soft-grey',
                               children=[
                                   dcc.Graph(id='stock-ts', config={'displayModeBar': False}, animate=False)
                               ])
