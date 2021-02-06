@@ -48,7 +48,8 @@ def get_df(response):
     :return: API response converted to df
     '''
     dict_response = {'Date': [], 'Open': [], 'High': [], 'Low': [], 'Close': [], 'Volume': []}
-    ts = response.json()['Time Series (Daily)']
+    response_json = response.json()
+    ts = response_json['Time Series (Daily)']
     for a in reversed(list(ts.keys())):
         dict_response['Date'].append(datetime.strptime(a, '%Y-%m-%d'))
         dict_response['Open'].append(float(ts[a]['1. open']))

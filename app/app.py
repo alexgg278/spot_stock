@@ -27,7 +27,7 @@ app.layout = html.Div(
                                             id='symbol',
                                             type='text',
                                             placeholder='Ticker symbol',
-                                            value='AMZN',
+                                            value='BA',
                                             debounce=True)
                                        ),
                                   html.Br(),

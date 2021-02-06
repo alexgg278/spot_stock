@@ -25,7 +25,7 @@ app.layout = html.Div(
                                   html.Div(
                                       dcc.Dropdown(
                                           options=ticker_list,
-                                          value='AMZN',
+                                          value='BA',
                                           multi=False,
                                           id='symbol'
                                       )),
