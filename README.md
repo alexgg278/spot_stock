@@ -27,6 +27,6 @@ In order to run the application the user should should run either app.py or app2
 
 ## Examples
 
-![alt text](/slides/example1.PNG "Example app.py")
+![alt text](/slides/Video app.gif "Example app.py")
 
 ![alt text](/slides/example2.PNG "Example app2.py")
